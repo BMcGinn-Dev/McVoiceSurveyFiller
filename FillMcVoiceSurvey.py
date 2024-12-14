@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.chrome import ChromeDriverManager  # type: ignore
 from webdriver_manager.firefox import GeckoDriverManager  # type: ignore
@@ -117,14 +119,61 @@ def fill_first_page(c_browser):
     next_button.send_keys(Keys.ENTER)
 
 
+
+def fill_second_page(c_browser):
+    
+    # Wait for the new page to fully load
+    WebDriverWait(c_browser, 10).until(
+        lambda driver: driver.execute_script("return document.readyState") == "complete"
+    )
+    
+    # Ensure a specific element on the second page is present before proceeding
+    radio_button = WebDriverWait(c_browser, 10).until(
+        EC.presence_of_element_located((By.ID, "R000455.1"))  # Replace with the actual ID or locator
+    )
+    
+    # Locate the radio button by its ID --> This is the ID of the "Employee in Restaurant" option
+    #radio_button = c_browser.find_element(By.ID, "R000455.1")
+    
+    # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+    c_browser.execute_script("arguments[0].click();", radio_button)
+   
+    
+    time.sleep(1.5)
+
+    # Find the input "NextButton"
+    next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
+    # Simulate hitting "Enter" on the button
+    next_button.send_keys(Keys.ENTER)
+
+
+
+
 # ______________ ACTION TIME ___________________________
 
 
 # ic(c1, c2, c3, c4, c5, c6)
 
-c_browser = openChromeBrowser()
+try:
+    c_browser = openChromeBrowser()
+except:
+    ic("Failed to initialize Chrome Browser with Selenium.")
+    
+time.sleep(1)
 
-fill_first_page(c_browser)
+try:
+    fill_first_page(c_browser)
+except:
+    ic("Failed to fill first survey page. Run in vacuum.")
+    
+time.sleep(5)
+
+try:
+    fill_second_page(c_browser)
+except:
+    ic("Failed to fill second survey page. Run in vacuum.")
+
+
 
 time.sleep(3)
 
