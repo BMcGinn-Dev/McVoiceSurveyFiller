@@ -119,27 +119,22 @@ def fill_first_page(c_browser):
     next_button.send_keys(Keys.ENTER)
 
 
-
 def fill_second_page(c_browser):
-    
+
     # Wait for the new page to fully load
     WebDriverWait(c_browser, 10).until(
         lambda driver: driver.execute_script("return document.readyState") == "complete"
     )
-    
+
     # Ensure a specific element on the second page is present before proceeding
     radio_button = WebDriverWait(c_browser, 10).until(
-        EC.presence_of_element_located((By.ID, "R000455.1"))  # Replace with the actual ID or locator
+        EC.presence_of_element_located((By.ID, "R000455.1"))
     )
-    
-    # Locate the radio button by its ID --> This is the ID of the "Employee in Restaurant" option
-    #radio_button = c_browser.find_element(By.ID, "R000455.1")
-    
+
     # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
     c_browser.execute_script("arguments[0].click();", radio_button)
-   
-    
-    time.sleep(1.5)
+
+    time.sleep(3)
 
     # Find the input "NextButton"
     next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
@@ -147,6 +142,224 @@ def fill_second_page(c_browser):
     next_button.send_keys(Keys.ENTER)
 
 
+def fill_third_page(c_browser):
+    # Wait for the new page to fully load
+    WebDriverWait(c_browser, 10).until(
+        lambda driver: driver.execute_script("return document.readyState") == "complete"
+    )
+
+    # Ensure a specific element on the second page is present before proceeding
+    radio_button = WebDriverWait(c_browser, 10).until(
+        EC.presence_of_element_located((By.ID, "R004000.2"))
+    )
+
+    # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+    c_browser.execute_script("arguments[0].click();", radio_button)
+
+    time.sleep(3)
+
+    # Find the input "NextButton"
+    next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
+    # Simulate hitting "Enter" on the button
+    next_button.send_keys(Keys.ENTER)
+
+
+def fill_fourth_page(c_browser):
+    # Wait for the new page to fully load
+    WebDriverWait(c_browser, 10).until(
+        lambda driver: driver.execute_script("return document.readyState") == "complete"
+    )
+
+    # Ensure a specific element on the second page is present before proceeding
+    radio_button = WebDriverWait(c_browser, 10).until(
+        EC.presence_of_element_located((By.ID, "R001000.5"))
+    )
+
+    # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+    c_browser.execute_script("arguments[0].click();", radio_button)
+
+    time.sleep(3)
+
+    # Find the input "NextButton"
+    next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
+    # Simulate hitting "Enter" on the button
+    next_button.send_keys(Keys.ENTER)
+
+
+def fill_fifth_page(c_browser):
+    # Wait for the new page to fully load
+    WebDriverWait(c_browser, 10).until(
+        lambda driver: driver.execute_script("return document.readyState") == "complete"
+    )
+
+    # Ensure a specific element on the second page is present before proceeding
+    radio_button = WebDriverWait(c_browser, 10).until(
+        EC.presence_of_element_located((By.ID, "R000444.1"))
+    )
+
+    # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+    c_browser.execute_script("arguments[0].click();", radio_button)
+
+    time.sleep(3)
+
+    # Find the input "NextButton"
+    next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
+    # Simulate hitting "Enter" on the button
+    next_button.send_keys(Keys.ENTER)
+
+
+# Employee ask for mobile app + Greet by name
+def fill_sixth_page(c_browser):
+    # Wait for the new page to fully load
+    WebDriverWait(c_browser, 10).until(
+        lambda driver: driver.execute_script("return document.readyState") == "complete"
+    )
+
+    # Employee ask if using mobile app --> YES
+    # Ensure a specific element on the second page is present before proceeding
+    radio_button = WebDriverWait(c_browser, 10).until(
+        EC.presence_of_element_located((By.ID, "R000473.1"))
+    )
+
+    # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+    c_browser.execute_script("arguments[0].click();", radio_button)
+
+    time.sleep(3)
+
+    # Employee greet you by name --> NO
+    # Ensure a specific element on the second page is present before proceeding
+    radio_button = WebDriverWait(c_browser, 10).until(
+        EC.presence_of_element_located((By.ID, "R000474.2"))
+    )
+
+    # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+    c_browser.execute_script("arguments[0].click();", radio_button)
+
+    time.sleep(3)
+
+    # Find the input "NextButton"
+    next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
+    # Simulate hitting "Enter" on the button
+    next_button.send_keys(Keys.ENTER)
+
+
+def fill_seventh_page(c_browser):
+    # Wait for the new page to fully load
+    WebDriverWait(c_browser, 10).until(
+        lambda driver: driver.execute_script("return document.readyState") == "complete"
+    )
+    
+    # So here is where the survey can give you different questions. We need to try-except all the possible
+    # questions they may have.
+    
+    
+    try:
+        # Cleanliness of restaurant --> HS
+        # Ensure a specific element on the second page is present before proceeding
+        radio_button = WebDriverWait(c_browser, 10).until(
+            EC.presence_of_element_located((By.ID, "R000351.5"))
+        )
+        # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+        c_browser.execute_script("arguments[0].click();", radio_button)
+        time.sleep(1.5)
+        ic("Cleanliness of Restaurant Done.")
+    except:
+        pass
+    
+    
+    
+
+    try:
+        # Ease of placing order --> HS
+        # Ensure a specific element on the second page is present before proceeding
+        radio_button = WebDriverWait(c_browser, 10).until(
+            EC.presence_of_element_located((By.ID, "R011000.5"))
+        )
+        # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+        c_browser.execute_script("arguments[0].click();", radio_button)
+        time.sleep(1.5)
+        ic("Ease of placing order Done.")
+    except:
+        pass
+    
+    
+    
+
+    try:
+        # Speed of Service --> Satisfied
+        # Ensure a specific element on the second page is present before proceeding
+        radio_button = WebDriverWait(c_browser, 10).until(
+            EC.presence_of_element_located((By.ID, "R008000.4"))
+        )
+        # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+        c_browser.execute_script("arguments[0].click();", radio_button)
+        time.sleep(1.5)
+        ic("Speed of Service Done.")
+    except:
+        pass
+    
+    
+    
+    try:
+        # Quality of Food --> Satisfied
+        # Ensure a specific element on the second page is present before proceeding
+        radio_button = WebDriverWait(c_browser, 10).until(
+            EC.presence_of_element_located((By.ID, "R028000.4"))
+        )
+        # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+        c_browser.execute_script("arguments[0].click();", radio_button)
+        time.sleep(1.5)
+        ic("Quality of Food Done.")
+    except:
+        pass
+    
+    
+    
+
+    try:
+        # Accuracy of order --> HighlySatisfied
+        # Ensure a specific element on the second page is present before proceeding
+        radio_button = WebDriverWait(c_browser, 10).until(
+            EC.presence_of_element_located((By.ID, "R007000.5"))
+        )
+        # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+        c_browser.execute_script("arguments[0].click();", radio_button)
+        time.sleep(1.5)
+        ic("Accuracy of Order Done.")
+    except:
+        pass
+    
+    
+    
+
+    try:
+        # Taste of Food --> HighlySatisfied
+        # Ensure a specific element on the second page is present before proceeding
+        radio_button = WebDriverWait(c_browser, 10).until(
+            EC.presence_of_element_located((By.ID, "R005000.5"))
+        )
+        # Click the radio button --> Apparently the site is JavaScript-Controlled & this is you trigger a click in Javascript
+        c_browser.execute_script("arguments[0].click();", radio_button)
+        time.sleep(1.5)
+        ic("Taste of Food Done.")
+    except:
+        pass
+    
+    
+    
+    
+
+    # We dont have the "Friendliness of Employee" NEED TO RETRY UNTIL WE FIND ID, then add try-excepts OR check which questions are there
+
+
+
+
+
+
+    # Find the input "NextButton"
+    next_button = c_browser.find_element(By.CLASS_NAME, "NextButton")
+    # Simulate hitting "Enter" on the button
+    next_button.send_keys(Keys.ENTER)
 
 
 # ______________ ACTION TIME ___________________________
@@ -154,27 +367,83 @@ def fill_second_page(c_browser):
 
 # ic(c1, c2, c3, c4, c5, c6)
 
+# Begin Try-Excepts for each of the survey pages
+
 try:
     c_browser = openChromeBrowser()
 except:
     ic("Failed to initialize Chrome Browser with Selenium.")
-    
+
 time.sleep(1)
 
+# Try first page
 try:
     fill_first_page(c_browser)
-except:
-    ic("Failed to fill first survey page. Run in vacuum.")
-    
-time.sleep(5)
+    ic("Successful completion of 1st Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 1st page.")
 
+# Try second page
 try:
     fill_second_page(c_browser)
-except:
-    ic("Failed to fill second survey page. Run in vacuum.")
+    ic("Successful completion of 2nd Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 2nd page.")
+# Try third page
+try:
+    fill_third_page(c_browser)
+    ic("Successful completion of 3rd Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 3rd page.")
 
+# Try fourth page
+try:
+    fill_fourth_page(c_browser)
+    ic("Successful completion of 4th Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 4th page.")
 
+# Try fifth page
+try:
+    fill_fifth_page(c_browser)
+    ic("Successful completion of 5th Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 5th page.")
 
+# Try sixth page
+try:
+    fill_sixth_page(c_browser)
+    ic("Successful completion of 6th Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 6th page.")
+
+# Try seventh page
+try:
+    fill_seventh_page(c_browser)
+    ic("Successful completion of 7th Page")
+except Exception as e:
+    ic("Failed to fill seventh survey page. Run in vacuum.")
+    ic(f"Here is the exception: \n {e}")
+finally:
+    ic("Completed attempt to finish 7th page.")
 time.sleep(3)
 
 closeChromeBrowser(c_browser)
