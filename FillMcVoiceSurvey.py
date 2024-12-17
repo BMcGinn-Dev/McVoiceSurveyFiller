@@ -1,4 +1,5 @@
 import time
+import re
 from icecream import ic  # type: ignore
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -723,6 +724,7 @@ def fill_final_page(c_browser):
     # Find the element by class name
     valcode_element = c_browser.find_element(By.CLASS_NAME, "ValCode")
     ic("We have the validation code!!")
+    ic(valcode_element.text)
 
     time.sleep(2)
     # print(valcode_element.text)
